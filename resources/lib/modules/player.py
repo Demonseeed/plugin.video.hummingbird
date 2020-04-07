@@ -7,6 +7,9 @@ from resources.lib.modules import accounts
 import sys
 import os
 import requests
+import xbmcgui
+
+Home = xbmcgui.Window(10000)
     
 sysaddon = sys.argv[0]
 syshandle = int(sys.argv[1])
@@ -51,6 +54,7 @@ class PlayAnime:
             item.setProperty('inputstream.adaptive.manifest_type', data['adaptive'])
         
         tools.setSetting('anime.lastwatched', str(info['id']))
+        Home.setProperty('LastWatched', control.getSetting('anime.lastwatched'))
         
         try:
             if int(info['episodeNumber']) == int(info['episode_count']):
